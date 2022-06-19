@@ -105,14 +105,11 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
         <div >
           <p className={styles.userProfileTitle}>Профиль пользователя </p >
         </div>
-        <div className={classNames(styles.buttonActive, { [styles.displayDiv]: isActive })} onClick={toggleActive}>
-          <p>Редактировать</p>
-        </div>
-        <div className={classNames(styles.buttonActive, { [styles.displayDiv]: !isActive })} onClick={toggleActive}>
-          <p>Отменить</p>
+        <div className={styles.buttonActive} onClick={toggleActive}>
+          <p className={classNames({ [styles.displayDiv]: isActive })}>Редактировать</p>
+          <p className={classNames({ [styles.displayDiv]: !isActive })} >Отменить</p>
         </div>
       </div>
-
       <form onSubmit={handleSubmit((data: Inputs) => props.uploadUser(prepareUser(data)))} >
         <div className={styles.userProfileContainer}>
           <p>Name: </p>
