@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import './App.scss';
+import SideBar from './components/side-bar/side-bar';
+import UsersListContainer from './components/users-list/users-list-container';
+import UserProfileContainer from './components/user-profile/user-profile-container';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export enum SortOrder {
+  BYCOMPANY = "byCompany",
+  BYCITY = "byCity"
+};
 
-export default App;
+interface AppProps { };
+interface AppState {
+  sorting: SortOrder
+};
+
+export class App extends Component<AppProps, AppState> {
+  state = {
+    sorting: SortOrder.BYCITY
+  };
+
+  constructor(props: AppProps) {
+    super(props);
+    this.sort = this.sort.bind(this);
+  };
+
+  sort(sortOrder: SortOrder) {
+    this.setState({ sorting: sortOrder })
+  };
+
+  render() {
+    return (
+      <div className='pageWraper'>
+        <SideBar sort={this.sort} />
+        <div>
+          <Router>
+            <Routes>
+              <Route path="/" element={<UsersListContainer sortOrder={this.state.sorting} />} />
+              <Route path="/profile" element={<UserProfileContainer />} >
+                <Route path=":userId" element={<UserProfileContainer />} />
+              </Route>
+            </Routes>
+          </Router>
+        </div>
+      </div>
+    );
+  };
+};
+
+export default App

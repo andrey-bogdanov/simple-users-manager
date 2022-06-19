@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.pageWraper {
+  width: 665px;
+  height: 100vh;
+  border-style: solid;
+  border-color: rgb(220, 220, 220);
+  border-width: 1px;
+  display: grid;
+  grid-template-columns: 152px auto;
+}

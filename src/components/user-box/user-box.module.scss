@@ -1,0 +1,32 @@
+.userBoxContainer {
+  max-width: 420px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-left: 34px;
+  background-color: rgba(243, 243, 243, 1);
+  border-radius: 8px;
+  display: grid;
+  grid-template-rows: 15px 15px 15px;
+  gap: 7px;
+  align-items: center;
+  font-size: 11px;
+}
+
+.itemName {
+  margin-right: 7px;
+  color: rgba(163, 163, 163, 1)
+}
+
+.toProfile {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgba(75, 81, 239, 1)
+}
+
+.itemBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 12px;
+}

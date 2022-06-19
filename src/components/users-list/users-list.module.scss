@@ -1,0 +1,45 @@
+.userContainer {
+  margin: 0px 34px 14px 34px;
+  padding: 3px 15px;
+  border-radius: 8px;
+  background-color: rgba(243, 243, 243, 1);
+  width: 420px;
+  height: 73px;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.usersListTitle {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 19px 0 17px 34px;
+}
+
+.numberUsers {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: end;
+  margin-right: 59px;
+}
+
+.usersListBox {
+  max-width: auto;
+}
+
+.disableDiv {
+  display: none;
+}
+
+.spinerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    display: block;
+  }
+}
