@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 type UserProfileProps = {
   user: User,
-  uploadUser: any
+  uploadUser: (data: User) => void
 };
 
 type Inputs = {
@@ -22,7 +22,17 @@ type Inputs = {
 
 function UserProfile(props: UserProfileProps): React.ReactElement {
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm<Inputs>({
+    defaultValues: {
+      name: props.user.name,
+      username: props.user.username,
+      email: props.user.email,
+      street: props.user.address.street,
+      city: props.user.address.city,
+      zipcode: props.user.address.zipcode,
+      website: props.user.website
+    }
+  });
 
   const [isActive, setActive] = React.useState<boolean>(false);
 
@@ -51,10 +61,14 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
       },
       comments: data.comments
     };
+    setActive(!isActive);
     return userForUpload
   };
 
   function toggleActive(): void {
+    if (isActive) {
+      reset();
+    };
     setActive(!isActive);
   };
 
@@ -103,7 +117,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
         <div className={styles.userProfileContainer}>
           <p>Name: </p>
           <input
-            defaultValue={props.user.name}
             type="text"
             {...register("name", { required: true })}
             className={currentClassNames.name}
@@ -111,7 +124,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>user Name: </p>
           <input
-            defaultValue={props.user.username}
             type="text"
             {...register("username", { required: true })}
             className={currentClassNames.username}
@@ -119,7 +131,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>E-mail: </p>
           <input
-            defaultValue={props.user.email}
             type="text"
             {...register("email", { required: true })}
             className={currentClassNames.email}
@@ -127,7 +138,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>Street: </p>
           <input
-            defaultValue={props.user.address.street}
             type="text"
             {...register("street", { required: true })}
             className={currentClassNames.street}
@@ -135,7 +145,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>City: </p>
           <input
-            defaultValue={props.user.address.city}
             type="text"
             {...register("city", { required: true })}
             className={currentClassNames.city}
@@ -143,7 +152,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>Zip code: </p>
           <input
-            defaultValue={props.user.address.zipcode}
             type="text"
             {...register("zipcode", { required: true })}
             className={currentClassNames.zipcode}
@@ -151,7 +159,6 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           />
           <p>Website: </p>
           <input
-            defaultValue={props.user.website}
             type="text"
             {...register("website", { required: true })}
             className={currentClassNames.website}
