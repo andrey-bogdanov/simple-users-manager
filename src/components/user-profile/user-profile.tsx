@@ -129,7 +129,7 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           <p>E-mail: </p>
           <input
             type="text"
-            {...register("email", { required: true })}
+            {...register("email", { required: true, pattern: /^(.+)\@(.+)\.([a-z]+)$/ })}
             className={currentClassNames.email}
             disabled={!isActive}
           />
@@ -150,14 +150,14 @@ function UserProfile(props: UserProfileProps): React.ReactElement {
           <p>Zip code: </p>
           <input
             type="text"
-            {...register("zipcode", { required: true })}
+            {...register("zipcode", { required: true, pattern: /^\d{5}\-\d{4}$/ })}
             className={currentClassNames.zipcode}
             disabled={!isActive}
           />
           <p>Website: </p>
           <input
             type="text"
-            {...register("website", { required: true })}
+            {...register("website", { required: true, pattern: /^([a-z0-9]+)\.([a-z]+)$/ })}
             className={currentClassNames.website}
             disabled={!isActive}
           />
